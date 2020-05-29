@@ -212,12 +212,26 @@ def ploter(columned_file):
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 
+'''
+    kari ke man kardam ine ke az Kmeans va cluster bandi estefade kardam
+    2ta center ro entekhab mikonam ( element haye aval va dovome file) 
+    va be in soorat cluster bandi mishavand ke
+    C.S har center ba baghie element ha hesab mishavad
+    va C.S har element k ba centeri ke bsihtr bood dar dasteye oon center gharar migirad
 
+    va inkar inghadr edame peyda mikonad ta listaye jadidemun ba list haye ghabli yeki shavad (list == cluster)
+
+
+'''
 
 arr = rows_readFile("dataset.csv")
 arr_csv = strTofloat(arr)
 a1, a2 = kmeans(arr_csv)
 
+'''
+    inja dar vaghe miad mige ke onsore aval ro 0 dar nazar begire
+    va baghie element haee ke dar in daste hastand ro 0 dar nazar migirm
+'''
 if(arr_csv[0] in a1):
     file = open("result.txt","w")
     for el in arr_csv:
