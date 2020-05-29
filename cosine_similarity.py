@@ -21,9 +21,97 @@ def strTofloat(Arr2D):
 
     return csv_int_arr
 
+def normCal (v):
+    # v= [1, 2, 3, 4]
+
+    ans = 0
+    n = len(v)
+    for i in range(n):
+        ans += (v[i])**2
+    return math.sqrt(ans)
+
+def dotProduct(v1,v2):
+    n = len(v1)
+    ans = 0
+    for i in range(n):
+        ans += v1[i] * v2[i]
+
+    return ans
+
+
+def cosine(v1,v2):
+    norm_v1 = normCal(v1)
+    norm_v2 = normCal(v2)
+    dp = dotProduct(v1,v2)
+
+    return ( dp / (norm_v1*norm_v2))
+
+def cosine_center(center,data_arr):
+    '''
+        calculate the cosine_similarity for the center to all the elemnts
+    '''
+    result = []
+    counter = 0
+    cosinus = 0
+    while(counter < len(data_arr)):
+        cosinus = cosine(center,data_arr[counter])
+        result.append(cosinus)
+        counter += 1
+    return result
+
+def maximum_cal(arr1_cosinus, arr2_cosinus,csv_arr):
+    counter = 0
+    min_res = []
+    cosine_cntr1 = [] 
+    cosine_cntr2 = [] 
+
+    while(counter < len(csv_arr)):
+        if(arr1_cosinus[counter] >= arr2_cosinus[counter]):
+           cosine_cntr1.append(csv_arr[counter])
+        if(arr2_cosinus[counter] > arr1_cosinus[counter]):
+            cosine_cntr2.append(csv_arr[counter])
+  
+        counter +=1
+        
+    return (cosine_cntr1 , cosine_cntr2)
+
+def avg_cal (arr2d):
+    arr_x = []
+    arr_y = []
+    arr_z = []
+    arr_c = []
+    avg_x = 0
+    avg_y = 0
+    avg_z = 0
+    avg_c = 0
+    counter = 0
+    while(counter <len(arr2d)):
+        counter1 =0
+        while(counter1 < 4):
+            arr_x.append(arr2d[counter][0])
+            arr_y.append(arr2d[counter][1])
+            arr_z.append(arr2d[counter][2])
+            arr_c.append(arr2d[counter][3])
+
+            counter1 += 1
+        counter += 1
+
+    avg_x = sum(arr_x)/len(arr_x)
+    avg_y = sum(arr_y)/len(arr_y)
+    avg_z = sum(arr_z)/len(arr_z)
+    avg_c = sum(arr_c)/len(arr_c)
+
+    new_cntr = [avg_x, avg_y, avg_z, avg_c]
+
+    return new_cntr
+    
+def kmean(csv_arr):
 
 
 # reading and ploter section in down below ~~~~~~~~~~~~~~~~~~ #
+
+
+
 
 def rows_readFile(file_name):
     '''
