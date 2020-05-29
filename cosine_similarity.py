@@ -104,9 +104,49 @@ def avg_cal (arr2d):
     new_cntr = [avg_x, avg_y, avg_z, avg_c]
 
     return new_cntr
-    
-def kmean(csv_arr):
 
+def kmeans(csv_arr):
+    center1 = csv_arr[0]
+    center2 = csv_arr[1]
+    arr1_cosine = []
+    arr2_cosine = []
+    new_points1 = []
+    new_points2 = []
+    counter = 0
+    arr1_temp =[]
+    arr2_temp =[]
+    i =0
+    while(True):
+        arr1_cosine = cosine_center(center1,csv_arr)
+        arr2_cosine = cosine_center(center2,csv_arr)
+        arr1_temp = []
+        arr2_temp = []
+        for point in new_points1:
+            arr1_temp.append(point)
+        for point in new_points2:
+            arr2_temp.append(point)
+        new_points1, new_points2 = maximum_cal(arr1_cosine,arr2_cosine,csv_arr)
+        center1 = avg_cal(new_points1)
+        center2 = avg_cal(new_points2)
+        i +=1
+        if(arr1_temp == new_points1 and arr2_temp == new_points2 ):
+            print("THIS IS I "+ str(i) )
+            
+            break
+        
+    return (new_points1, new_points2)
+
+def s_cal(points1, points2 ):
+    counter = 0
+    max_arr = []
+    while(counter < len(points1)):
+        el = points1[counter]
+        arr_c = cosine_center(el,points2)
+        max_arr.append(max(arr_c))
+
+        counter +=1
+    
+    return max(max_arr)
 
 # reading and ploter section in down below ~~~~~~~~~~~~~~~~~~ #
 
@@ -147,7 +187,7 @@ def columnedFile(file_name):
         temp_row = column_readFile(file_name,counter)
         
         file_col.append(temp_row)
-        print(temp_row)
+        
 
         counter +=1
 
@@ -171,3 +211,25 @@ def ploter(columned_file):
     plt.show()
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+
+
+arr = rows_readFile("dataset.csv")
+arr_csv = strTofloat(arr)
+a1, a2 = kmeans(arr_csv)
+
+print("s is equal to :" + str(s_cal(a1,a2)))
+
+# ploter(columnedFile("dataset.csv")) # this Line will plot the dataset File
+
+with open('result1.csv', 'w',newline='') as write_file:
+    csv_writer = writer( write_file )
+    for c in a1:
+        csv_writer.writerow(c)
+
+with open('result2.csv', 'w',newline='') as write_file:
+    csv_writer = writer( write_file )
+    for c in a2:
+        csv_writer.writerow(c)
+
+ploter(columnedFile("result1.csv"))
