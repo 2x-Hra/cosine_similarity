@@ -20,3 +20,15 @@ def rows_readFile(file_name):
         
     
     return csv_arr
+
+def strTofloat(Arr2D):
+    '''
+        this function will change type of a 2d STRING array to a 2d FLOAT array
+    '''
+    csv_int_arr = []
+    for arr_el in Arr2D:
+        arr_el = [float(i) for i in arr_el] 
+        
+        csv_int_arr.append(arr_el)
+
+    return csv_int_arr
