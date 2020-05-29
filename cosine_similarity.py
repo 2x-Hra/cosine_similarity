@@ -218,6 +218,28 @@ arr = rows_readFile("dataset.csv")
 arr_csv = strTofloat(arr)
 a1, a2 = kmeans(arr_csv)
 
+if(arr_csv[0] in a1):
+    file = open("result.txt","w")
+    for el in arr_csv:
+        if(el in a1):
+            file.write("0" + "\n")
+        else:
+            file.write("1\n")
+        
+else:
+    file = open("result.txt", "w")
+    for el in arr_csv:
+        if(el in a2):
+            file.write("0\n")
+        else:
+            file.write("1\n")
+
+file.write(str(s_cal(a1,a2)))
+
+file.close()
+
+
+
 print("s is equal to :" + str(s_cal(a1,a2)))
 
 # ploter(columnedFile("dataset.csv")) # this Line will plot the dataset File
@@ -232,4 +254,4 @@ with open('result2.csv', 'w',newline='') as write_file:
     for c in a2:
         csv_writer.writerow(c)
 
-ploter(columnedFile("result1.csv"))
+# ploter(columnedFile("result1.csv"))
