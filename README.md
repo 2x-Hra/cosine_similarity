@@ -1,7 +1,7 @@
 # Cosine Similarity Method
 
 ### Description 
-This is a method of separate the dataset into two groups Using **Cosine Similarity** , and This is a method of separate the dataset into two groups Using Euclidean distance.
+This is a method to separate the dataset into two groups Using **Cosine Similarity** , and This is a method of separate the dataset into two groups Using Euclidean distance.
 
 ### Prerequisites
 Install Python 3.7
