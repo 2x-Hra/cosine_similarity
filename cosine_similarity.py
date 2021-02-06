@@ -258,12 +258,12 @@ print("s is equal to :" + str(s_cal(a1,a2)))
 
 # ploter(columnedFile("dataset.csv")) # this Line will plot the dataset File
 
-with open('result1.csv', 'w',newline='') as write_file:
+with open('result1_cosine.csv', 'w',newline='') as write_file:
     csv_writer = writer( write_file )
     for c in a1:
         csv_writer.writerow(c)
 
-with open('result2.csv', 'w',newline='') as write_file:
+with open('result2_cosine.csv', 'w',newline='') as write_file:
     csv_writer = writer( write_file )
     for c in a2:
         csv_writer.writerow(c)
